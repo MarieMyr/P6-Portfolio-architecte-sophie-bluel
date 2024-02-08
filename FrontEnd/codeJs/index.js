@@ -1,5 +1,5 @@
 let galleryHTML = document.querySelector(".gallery");
-
+let btnFilters = document.querySelectorAll(".filter_btn");
 
 
 // Génération des projets dynamiquement
@@ -28,3 +28,27 @@ let galleryHTML = document.querySelector(".gallery");
     });
     galleryHTML.innerHTML = workListe;
     }
+
+
+    // Section des Filtres
+
+btnFilters.forEach((btn, index) => {
+    btn.addEventListener("click", (event) => {
+      let filterWorks = allWorks.filter((work) => work.categoryId == index);
+  
+      if (index == 0) {
+        showAllWorks(allWorks);
+      } else {
+        showAllWorks(filterWorks);
+      }
+      toggleActivatebtn(index);
+    });
+  });
+
+// Changer le bouton activer au click
+  function toggleActivatebtn(btnId) {
+    btnFilters.forEach((btn) => {
+      btn.classList.remove("filter_btn_active");
+    });
+    btnFilters[btnId].classList.add("filter_btn_active");
+  }

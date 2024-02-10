@@ -1,9 +1,43 @@
 let galleryHTML = document.querySelector(".gallery");
-let btnFilters = document.querySelectorAll(".filter_btn");
+let sectionFiltres = document.querySelector(".filters");
 
+let adminEditionMode = document.querySelector(".admin__editionMode");
+let adminSection = document.querySelector(".admin__section");
+
+//Les boutons
+let btnFilters = document.querySelectorAll(".filter_btn");
+let btnLogin = document.querySelector(".btnLogin");
+let btnLogout = document.querySelector(".btnLogout");
+
+
+// Gestion de l'affichage des boutons admin
+  function adminBoard() {
+    let token = localStorage.getItem("loginToken");
+    console.log(token);
+
+    if (token == null) {
+    btnLogin.style.display = "flex";
+    btnLogout.style.display = "none";
+    adminEditionMode.style.display = "none";
+    adminSection.style.display = "none";
+    sectionFiltres.style.display = "flex";
+  } else {
+    btnLogin.style.display = "none";
+    btnLogout.style.display = "flex";
+    adminEditionMode.style.display = "flex";
+    adminSection.style.display = "flex";
+    sectionFiltres.style.display = "none";
+  }
+}
+adminBoard();
+
+// Déconnection de la page d'accueil
+btnLogout.addEventListener("click", () => {
+  localStorage.removeItem("loginToken");
+  window.location.href = "index.html";
+});
 
 // Génération des projets dynamiquement
-
 //Récupération des travaux via l'API
     async function getAllWorks() {
         const reponse = await fetch("http://localhost:5678/api/works");
@@ -30,8 +64,7 @@ let btnFilters = document.querySelectorAll(".filter_btn");
     }
 
 
-    // Section des Filtres
-
+// Section des Filtres
 btnFilters.forEach((btn, index) => {
     btn.addEventListener("click", (event) => {
       let filterWorks = allWorks.filter((work) => work.categoryId == index);
@@ -44,6 +77,7 @@ btnFilters.forEach((btn, index) => {
       toggleActivatebtn(index);
     });
   });
+
 
 // Changer le bouton activer au click
   function toggleActivatebtn(btnId) {

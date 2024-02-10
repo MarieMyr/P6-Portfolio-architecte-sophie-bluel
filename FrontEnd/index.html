@@ -8,18 +8,34 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<script src="https://kit.fontawesome.com/73db696eb9.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="stylesheet" href="./assets/index.css">
 	<script src="/FrontEnd/codeJs/index.js" defer></script>
 </head>
 <body>
 <header>
+
+<!-- Section des Modales-->
+<aside>
+	<div class="admin__section">
+		<a href="" class="js-modale-close">
+			<i class="fa-solid fa-pen-to-square"></i>
+		</a>
+		<p>Mode édition</p>
+	</div>
+
+</aside>
+
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<a href="login.html">
+				<li class="btnLogin">login</li>
+			</a>
+				<li class="btnLogout">logout</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -37,7 +53,14 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+
+		<div class="admin__editionMode">
+			<h2>Mes Projets</h2>
+				<div>
+				<i class="fa-solid fa-pen-to-square"></i>
+				<span class="js-modaleModifier">Modifier</span>
+			</div>
+		</div>
 
 		<div class="filters">
 			<button class="filter_btn filter_btn_active btn_tous"> Tous </button>

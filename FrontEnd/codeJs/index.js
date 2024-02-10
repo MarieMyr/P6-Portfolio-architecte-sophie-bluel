@@ -1,13 +1,21 @@
 let galleryHTML = document.querySelector(".gallery");
 let sectionFiltres = document.querySelector(".filters");
 
-let adminEditionMode = document.querySelector(".admin__editionMode");
-let adminSection = document.querySelector(".admin__section");
 
 //Les boutons
 let btnFilters = document.querySelectorAll(".filter_btn");
 let btnLogin = document.querySelector(".btnLogin");
 let btnLogout = document.querySelector(".btnLogout");
+let btnAddProjets = document.querySelector(".btnModaleAddProjet");
+let btnOuvertureModaleModifier = document.querySelector(".js-modaleModifier");
+let btnExitModale = document.querySelector(".extitModale");
+
+// Les modales
+let adminEditionMode = document.querySelector(".admin__editionMode");
+let adminSection = document.querySelector(".admin__section");
+let galleryModale = document.querySelector(".galleryModale");
+let galleryModaleAffichage = document.querySelector(".modale-gallery");
+
 
 
 // Gestion de l'affichage des boutons admin
@@ -57,10 +65,12 @@ btnLogout.addEventListener("click", () => {
     <figure>
       <img src="${work.imageUrl}" alt="${work.title}">
       <figcaption> ${work.title}</figcaption>
+      <span class="trash" onclick= "deleteWork(${work.id})"> <i class="fa-solid fa-trash-can "></i> </span>
     </figure>
     `;
     });
     galleryHTML.innerHTML = workListe;
+    galleryModale.innerHTML = workListe;
     }
 
 
@@ -86,3 +96,17 @@ btnFilters.forEach((btn, index) => {
     });
     btnFilters[btnId].classList.add("filter_btn_active");
   }
+
+
+// Gestions des modales
+//MODALE GALLERY
+
+// Au click sur modifier, ouvrir la modale galerie photo
+btnOuvertureModaleModifier.addEventListener("click", () => {
+  galleryModaleAffichage.style.display = "flex";
+});
+
+// Fermeture de la modale galerie photo au click sur la croix
+btnExitModale.addEventListener("click", () => {
+  galleryModaleAffichage.style.display = "none";
+});

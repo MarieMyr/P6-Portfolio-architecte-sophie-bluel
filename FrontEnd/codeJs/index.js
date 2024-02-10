@@ -9,12 +9,14 @@ let btnLogout = document.querySelector(".btnLogout");
 let btnAddProjets = document.querySelector(".btnModaleAddProjet");
 let btnOuvertureModaleModifier = document.querySelector(".js-modaleModifier");
 let btnExitModale = document.querySelector(".extitModale");
+let btnReturn = document.querySelector(".js-modaleReturn");
 
 // Les modales
 let adminEditionMode = document.querySelector(".admin__editionMode");
 let adminSection = document.querySelector(".admin__section");
 let galleryModale = document.querySelector(".galleryModale");
 let galleryModaleAffichage = document.querySelector(".modale-gallery");
+let modaleAddProjet = document.querySelector(".modaleAddProjet");
 
 
 
@@ -44,6 +46,9 @@ btnLogout.addEventListener("click", () => {
   localStorage.removeItem("loginToken");
   window.location.href = "index.html";
 });
+
+// Reset la section projets
+let allWorks = [];
 
 // Génération des projets dynamiquement
 //Récupération des travaux via l'API
@@ -110,3 +115,66 @@ btnOuvertureModaleModifier.addEventListener("click", () => {
 btnExitModale.addEventListener("click", () => {
   galleryModaleAffichage.style.display = "none";
 });
+
+// Ouverture de la modale ajout de projet et fermeture de la moadale galerie photo
+btnAddProjets.addEventListener("click", () => {
+  modaleAddProjet.style.display = "flex";
+  galleryModaleAffichage.style.display = "none";
+});
+
+// Bouton retour modaleAddProjet
+btnReturn.addEventListener("click", () => {
+  modaleAddProjet.style.display = "none";
+  galleryModaleAffichage.style.display = "flex";
+});
+
+
+//Ajout projet /////
+//Ajout eventListener sur le bouton validée
+const btnValiderAjout = document.querySelector(".js-add-work")
+  btnValiderAjout.addEventListener("click", addWork)
+
+function addWork(event){
+  //On empêche le rechargement de la page
+  event.preventDefault()
+  let token = localStorage.getItem("loginToken");
+
+  // On récupére les données reçu
+  const title = document.querySelector(".js-title").value;
+  const categoryId = document.querySelector(".js-categoryId").value;
+  const image = document.querySelector(".js-image").files[0];
+
+// On compile les données reçu
+const formData = new FormData()
+formData.append("title" , title);
+formData.append("category", categoryId)
+formData.append("image", image)
+
+// On envoie les données du nouveau projet à l'api
+fetch("http://localhost:5678/api/works", 
+{
+  method: "POST",
+  headers: { Authorization: `Bearer ${token}`,},
+  body: formData,
+});
+
+  }
+
+//Suppression des projets au click sur la corbeille
+async function deleteWork(workId) {
+  console.log(workId);
+  let token = localStorage.getItem("loginToken");
+  console.log(token);
+  if (token) {
+    try {
+    let response = await fetch("http://localhost:5678/api/works/" + workId,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(response)
+    } catch (error) {
+      console.log("Suppression impossible");
+    }
+  }
+}

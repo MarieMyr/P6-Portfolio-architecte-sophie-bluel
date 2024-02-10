@@ -38,6 +38,46 @@
 		<span class="btnModaleAddProjet">Ajouter un projet</span>
 	</div>
 </aside >
+<aside class="modaleAddProjet">
+	<div class="modale-wrapper">
+		<div>
+			<span class="js-modaleReturn">
+				<i class="fa-solid fa-arrow-left"></i>
+			</span>
+		</div>
+	
+		<h2>Ajout d'un projet</h2>
+	
+		<form class="formCreationProjets" >
+	
+			<div class="form-photosSelection">
+				<i class="fa-regular fa-image"></i>
+				<label for="photo">+ Ajouter une photo</label>
+				<input type="file" name="photo" id="photo" class="js-image">
+			</div>
+	
+			<div class="form-group-title">
+				<label for="titre">Titre</label>
+				<input class="js-title" type="text" name="titre" id="titre">
+			</div>
+
+			<div class="form-group-id">
+				<label for="categorie">Catégorie</label>
+				<select name="categorie" id="categorie" class="js-categoryId">
+					<option value="1">Objets</option>
+					<option value="2">Appartements</option>
+					<option value="3">Hôtels & restaurants</option>
+				</select>
+			</div>
+
+			<input type="submit" class="js-add-work" value="Valider">
+	
+		</form>
+	
+	</div>
+
+</aside>
+<!---->
 
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>

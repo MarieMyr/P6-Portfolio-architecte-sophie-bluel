@@ -55,7 +55,7 @@
 	cursor: pointer;
 }
 
-/** Modale Ajout projet **/
+/** Modale gallery administrateur **/
 
 .admin__editionMode{
 	display: none;
@@ -156,4 +156,117 @@ position: relative;
 	cursor: pointer;
 	display: flex;
 	justify-content: flex-end;
+}
+
+/** Modale Ajout projet **/
+.modaleAddProjet{
+	position: fixed;
+	  top: 0;
+	  left: 0;
+	  display: none;
+	  align-items: center;
+	  justify-content: center;
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.formCreationProjets {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+
+.js-modaleReturn{
+	cursor: pointer;
+}
+  .form-photosSelection {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #E8F1F7;
+	width: 500px;
+	height: 200px;
+	border-radius: 10px;
+  }
+
+  .form-photosSelection i {
+	color: #306685;
+	font-size: 90px;
+	font-weight: 100;
+	margin: 20px;
+	margin-top: -10px;
+  }
+
+  .form-photosSelection input {
+	display: none;
+  }
+
+  .form-photosSelection label {
+	font-family: "work sans";
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 173px;
+	height: 36px;
+	background-color: #CBD6DC;
+	color: #306685;
+	border-radius: 50px;
+	cursor: pointer;
+	margin-top: -10px;
+  }
+
+  .form-photosSelection::after {
+	content: "jpg, png : 4mo max";
+	position: absolute;
+	top: 570px;
+	font-size: 12px;
+  }
+  
+  .form-group-title {
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+  }
+  
+  .form-group-title input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  }
+  
+  .form-group-title label {
+	margin: 3em 0 1em 0;
+  }
+
+  .form-group-id {
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+  }
+  
+  .form-group-id select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  }
+  
+  .form-group-id label {
+	margin: 3em 0 1em 0;
+  }
+
+  .formCreationProjets input[type=submit] {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #A7A7A7;
+ border: 2px solid #A7A7A7;
+  margin: 120px 0 30px 0;
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  border-radius: 60px;
 }

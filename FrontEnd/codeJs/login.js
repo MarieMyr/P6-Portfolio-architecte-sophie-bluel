@@ -19,6 +19,10 @@ let user = {
         email: email.value,
         password: password.value,
 }
+if (user.email.trim() == "" || user.password.trim() == ""){
+    alert("Vous devez remplir les champs")
+    return
+}
 const UserConnextion = JSON.stringify(user)
 
 try {
@@ -30,9 +34,12 @@ try {
 
 const responseData = await reponse.json()
 
-    if (responseData) {
+console.log(responseData)
+    if (responseData.message != "user not found") {
     saveToLocalStorage(responseData.token)
     window.location.href = "index.html"
+    } else {
+        alert("Les iddentifiants ne sont pas corrects")
     }
 
 } catch (error) {

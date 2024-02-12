@@ -134,6 +134,38 @@ btnReturn.addEventListener("click", () => {
 const btnValiderAjout = document.querySelector(".js-add-work")
   btnValiderAjout.addEventListener("click", addWork)
 
+//Visualisation de l'image
+  var image = document.getElementById("imgFile");
+  var iconImage = document.querySelector(".fa-image")
+  
+  var previewPicture  = function (e) {
+    image.style.display= "block"
+    iconImage.style.display= "none"
+     
+    const [picture] = e.files
+
+    if (picture) {
+    image.src = URL.createObjectURL(picture)
+      }
+  } 
+
+//Indicateur que les champs sont bien rempli 
+const formulaire = document.querySelector(".formCreationProjets")
+
+formulaire.addEventListener('input' , function() {
+  const tousChampsRemplis = [...formulaire.elements].every(champ => champ.value.trim() !== "") 
+
+if (tousChampsRemplis){
+  //document.getElementById("Defaut").id = "Activate"
+btnValiderAjout.id = "Activate"
+} else {
+  btnValiderAjout.remove
+  btnValiderAjout.id = "Defaut"
+}
+})
+
+
+
 function addWork(event){
   //On empêche le rechargement de la page
   event.preventDefault()
@@ -150,6 +182,15 @@ formData.append("title" , title);
 formData.append("category", categoryId)
 formData.append("image", image)
 
+//Verification des champs
+if (image == null) {
+  alert("Veuillez selectionner une image")
+  return
+} else if (title == "" || categoryId =="") {
+alert ("Veuillez choisir un titre")
+return
+}
+
 // On envoie les données du nouveau projet à l'api
 fetch("http://localhost:5678/api/works", 
 {
@@ -159,6 +200,8 @@ fetch("http://localhost:5678/api/works",
 });
 
   }
+
+// Si les valeurs de titre catégory et image = true le bouton passe vert
 
 //Suppression des projets au click sur la corbeille
 async function deleteWork(workId) {

@@ -39,7 +39,7 @@ console.log(responseData)
     saveToLocalStorage(responseData.token)
     window.location.href = "index.html"
     } else {
-        alert("Les iddentifiants ne sont pas corrects")
+        alert("Les identifiants ne sont pas corrects")
     }
 
 } catch (error) {

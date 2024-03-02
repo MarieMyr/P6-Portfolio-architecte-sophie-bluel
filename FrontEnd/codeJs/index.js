@@ -187,7 +187,7 @@ if (image == null) {
   alert("Veuillez selectionner une image")
   return
 } else if (title == "" || categoryId =="") {
-alert ("Veuillez choisir un titre")
+alert ("Veuillez choisir un titre et vérifier d'avoir sélectionner la bonne catégorie")
 return
 }
 
@@ -201,7 +201,6 @@ fetch("http://localhost:5678/api/works",
 
   }
 
-// Si les valeurs de titre catégory et image = true le bouton passe vert
 
 //Suppression des projets au click sur la corbeille
 async function deleteWork(workId) {
